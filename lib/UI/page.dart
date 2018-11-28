@@ -43,27 +43,21 @@ class Page extends StatelessWidget {
     return new Column(
       mainAxisAlignment: columnMainAxisAlignment,
       mainAxisSize: MainAxisSize.max,
-      children: <Widget>[
-        Flexible(
-          flex: 1,
-          child: new _TitlePageTransform(
-            percentVisible: percentVisible,
-            pageViewModel: pageViewModel,
-          ),
-        ), //Transform
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[ //Tr// ansform
         Expanded(
-          flex: 4,
           child: new _ImagePageTransform(
             percentVisible: percentVisible,
             pageViewModel: pageViewModel,
           ),
         ), //Transform
-        Flexible(
-          flex: 2,
-          child: new _BodyPageTransform(
-            percentVisible: percentVisible,
-            pageViewModel: pageViewModel,
-          ),
+        new _TitlePageTransform(
+          percentVisible: percentVisible,
+          pageViewModel: pageViewModel,
+        ),
+        new _BodyPageTransform(
+          percentVisible: percentVisible,
+          pageViewModel: pageViewModel,
         ), //Transform
       ],
     );
@@ -122,11 +116,7 @@ class _BodyPageTransform extends StatelessWidget {
       transform:
           new Matrix4.translationValues(0.0, 30.0 * (1 - percentVisible), 0.0),
       child: new Padding(
-        padding: const EdgeInsets.only(
-          bottom: 75.0,
-          left: 10.0,
-          right: 10.0,
-        ),
+        padding: const EdgeInsets.only(left: 40.0, right: 8.0, bottom: 75.0),
         child: DefaultTextStyle.merge(
           style: pageViewModel.bodyTextStyle,
           textAlign: TextAlign.center,
@@ -187,12 +177,7 @@ class _TitlePageTransform extends StatelessWidget {
       transform:
           new Matrix4.translationValues(0.0, 30.0 * (1 - percentVisible), 0.0),
       child: new Padding(
-        padding: new EdgeInsets.only(
-          top: 60.0,
-          bottom: 30.0,
-          left: 10.0,
-          right: 10.0,
-        ),
+        padding: new EdgeInsets.symmetric(vertical: 8.0,horizontal: 40.0),
         child: DefaultTextStyle.merge(
           style: pageViewModel.titleTextStyle,
           child: pageViewModel.title,
