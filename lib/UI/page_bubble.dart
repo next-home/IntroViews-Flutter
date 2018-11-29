@@ -24,7 +24,7 @@ class PageBubble extends StatelessWidget {
           child: Container(
             width: lerpDouble(
                 12.0,
-                40.0,
+                32.0,
                 viewModel
                     .activePercent), //This method return in between values according to active percent.
             height: 4.0,

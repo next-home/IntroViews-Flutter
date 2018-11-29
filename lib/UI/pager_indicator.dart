@@ -70,7 +70,7 @@ class PagerIndicator extends StatelessWidget {
       children: <Widget>[
         Expanded(child: Container()),
         Padding(
-          padding: const EdgeInsets.only(left:40.0),
+          padding: const EdgeInsets.only(left:48.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: bubbles,
