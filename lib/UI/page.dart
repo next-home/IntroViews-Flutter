@@ -44,7 +44,8 @@ class Page extends StatelessWidget {
       mainAxisAlignment: columnMainAxisAlignment,
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[ //Tr// ansform
+      children: <Widget>[
+        //Tr// ansform
         Expanded(
           child: new _ImagePageTransform(
             percentVisible: percentVisible,
@@ -117,11 +118,7 @@ class _BodyPageTransform extends StatelessWidget {
           new Matrix4.translationValues(0.0, 30.0 * (1 - percentVisible), 0.0),
       child: new Padding(
         padding: const EdgeInsets.only(left: 40.0, right: 8.0, bottom: 75.0),
-        child: DefaultTextStyle.merge(
-          style: pageViewModel.bodyTextStyle,
-          textAlign: TextAlign.center,
-          child: pageViewModel.body,
-        ),
+        child: pageViewModel.body,
       ), //Padding
     );
   }
@@ -177,11 +174,8 @@ class _TitlePageTransform extends StatelessWidget {
       transform:
           new Matrix4.translationValues(0.0, 30.0 * (1 - percentVisible), 0.0),
       child: new Padding(
-        padding: new EdgeInsets.symmetric(vertical: 8.0,horizontal: 40.0),
-        child: DefaultTextStyle.merge(
-          style: pageViewModel.titleTextStyle,
-          child: pageViewModel.title,
-        ),
+        padding: new EdgeInsets.symmetric(vertical: 8.0, horizontal: 40.0),
+        child: pageViewModel.title,
       ), //Padding
     );
   }
