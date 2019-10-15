@@ -72,8 +72,10 @@ class IntroViewsFlutter extends StatefulWidget {
   /// default to 300.0
   final double fullTransition;
 
-  IntroViewsFlutter(
-    this.pages, {
+  /// page padding deafults to EdgeInsets.all(8.0)
+  final EdgeInsets padding;
+
+  IntroViewsFlutter(this.pages, {
     Key key,
     this.onTapDoneButton,
     this.showSkipButton = true,
@@ -87,6 +89,7 @@ class IntroViewsFlutter extends StatefulWidget {
     this.doneButtonPersist = false,
     this.columnMainAxisAlignment = MainAxisAlignment.spaceAround,
     this.fullTransition = FULL_TARNSITION_PX,
+    this.padding = EdgeInsets.all(8.0),
   }) : super(key: key);
 
   @override
@@ -99,11 +102,11 @@ class IntroViewsFlutter extends StatefulWidget {
 class _IntroViewsFlutterState extends State<IntroViewsFlutter>
     with TickerProviderStateMixin {
   StreamController<SlideUpdate>
-      // ignore: close_sinks
-      slideUpdateStream; //Stream controller is used to get all the updates when user slides across screen.
+  // ignore: close_sinks
+  slideUpdateStream; //Stream controller is used to get all the updates when user slides across screen.
 
   AnimatedPageDragger
-      animatedPageDragger; //When user stops dragging then by using this page automatically drags.
+  animatedPageDragger; //When user stops dragging then by using this page automatically drags.
 
   int activePageIndex = 0; //active page index
   int nextPageIndex = 0; //next page index
@@ -141,7 +144,8 @@ class _IntroViewsFlutterState extends State<IntroViewsFlutter>
             animatedPageDragger = AnimatedPageDragger(
               slideDirection: slideDirection,
               transitionGoal:
-                  TransitionGoal.open, //we have to animate the open page reveal
+              TransitionGoal.open,
+              //we have to animate the open page reveal
               slidePercent: slidePercent,
               slideUpdateStream: slideUpdateStream,
               vsync: this,
@@ -150,7 +154,8 @@ class _IntroViewsFlutterState extends State<IntroViewsFlutter>
             animatedPageDragger = AnimatedPageDragger(
               slideDirection: slideDirection,
               transitionGoal:
-                  TransitionGoal.close, //we have to close the page reveal
+              TransitionGoal.close,
+              //we have to close the page reveal
               slidePercent: slidePercent,
               slideUpdateStream: slideUpdateStream,
               vsync: this,
@@ -195,9 +200,9 @@ class _IntroViewsFlutterState extends State<IntroViewsFlutter>
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle = TextStyle(
-            fontSize: widget.pageButtonTextSize ?? 18.0,
-            color: widget.pageButtonsColor ?? const Color(0x88FFFFFF),
-            fontFamily: widget.pageButtonFontFamily)
+        fontSize: widget.pageButtonTextSize ?? 18.0,
+        color: widget.pageButtonsColor ?? const Color(0x88FFFFFF),
+        fontFamily: widget.pageButtonFontFamily)
         .merge(widget.pageButtonTextStyles);
 
     List<PageViewModel> pages = widget.pages;
@@ -216,9 +221,11 @@ class _IntroViewsFlutterState extends State<IntroViewsFlutter>
             //next page reveal
             revealPercent: slidePercent,
             child: Page(
-                pageViewModel: pages[nextPageIndex],
-                percentVisible: slidePercent,
-                columnMainAxisAlignment: widget.columnMainAxisAlignment),
+              pageViewModel: pages[nextPageIndex],
+              percentVisible: slidePercent,
+              columnMainAxisAlignment: widget.columnMainAxisAlignment,
+              padding: widget.padding,
+            ),
           ), //PageReveal
 
           PagerIndicator(
@@ -237,7 +244,8 @@ class _IntroViewsFlutterState extends State<IntroViewsFlutter>
             acitvePageIndex: activePageIndex,
             totalPages: pages.length,
             onPressedDoneButton: widget
-                .onTapDoneButton, //void Callback to be executed after pressing done button
+                .onTapDoneButton,
+            //void Callback to be executed after pressing done button
             slidePercent: slidePercent,
             slideDirection: slideDirection,
             onPressedSkipButton: () {

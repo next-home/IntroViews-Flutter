@@ -12,17 +12,21 @@ class Page extends StatelessWidget {
   /// [MainAxisAligment]
   final MainAxisAlignment columnMainAxisAlignment;
 
+  ///page padding defaults to EdgeInsets.all(8.0)
+  final EdgeInsets padding;
+
   //Constructor
   Page({
     this.pageViewModel,
     this.percentVisible = 1.0,
     this.columnMainAxisAlignment = MainAxisAlignment.spaceAround,
+    this.padding = const EdgeInsets.all(8.0),
   });
 
   @override
   Widget build(BuildContext context) {
     return new Container(
-      padding: const EdgeInsets.all(8.0),
+      padding: padding,
       width: double.infinity,
       color: pageViewModel.pageColor,
       child: new Opacity(
