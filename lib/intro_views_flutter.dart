@@ -216,6 +216,7 @@ class _IntroViewsFlutterState extends State<IntroViewsFlutter>
             pageViewModel: pages[activePageIndex],
             percentVisible: 1.0,
             columnMainAxisAlignment: widget.columnMainAxisAlignment,
+            padding: widget.padding,
           ), //Pages
           PageReveal(
             //next page reveal
