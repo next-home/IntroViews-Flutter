@@ -89,7 +89,7 @@ class IntroViewsFlutter extends StatefulWidget {
     this.doneButtonPersist = false,
     this.columnMainAxisAlignment = MainAxisAlignment.spaceAround,
     this.fullTransition = FULL_TARNSITION_PX,
-    this.padding = EdgeInsets.all(8.0),
+    this.padding = const EdgeInsets.all(8.0),
   }) : super(key: key);
 
   @override
