@@ -209,7 +209,7 @@ class _IntroViewsFlutterState extends State<IntroViewsFlutter>
 
     return Scaffold(
       //Stack is used to place components over one another.
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: <Widget>[
           IntroPage(
